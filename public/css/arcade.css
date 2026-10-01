@@ -1,0 +1,447 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+
+:root {
+    --bg-deep: #050014;
+    --bg-panel: #0d0326;
+    --bg-panel-alt: #14063d;
+    --neon-pink: #ff2e88;
+    --neon-cyan: #22e6ff;
+    --neon-yellow: #ffe94a;
+    --neon-green: #39ff88;
+    --neon-red: #ff3355;
+    --text-dim: #7a7699;
+    --text-bright: #f2f2ff;
+    --scanline: rgba(0, 0, 0, 0.25);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    min-height: 100%;
+    background: var(--bg-deep);
+    color: var(--text-bright);
+    font-family: 'VT323', 'Courier New', monospace;
+    font-size: 18px;
+    letter-spacing: 0.03em;
+    overflow-x: hidden;
+}
+
+body {
+    background:
+        radial-gradient(ellipse at top, rgba(34, 230, 255, 0.08), transparent 60%),
+        radial-gradient(ellipse at bottom, rgba(255, 46, 136, 0.08), transparent 60%),
+        linear-gradient(180deg, #050014 0%, #0a0220 100%);
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(34, 230, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(34, 230, 255, 0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent 0,
+        transparent 2px,
+        var(--scanline) 3px,
+        transparent 4px
+    );
+    pointer-events: none;
+    z-index: 100;
+    mix-blend-mode: multiply;
+}
+
+.arcade-shell {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.arcade-marquee {
+    padding: 18px 24px;
+    border-bottom: 2px solid var(--neon-pink);
+    background: rgba(13, 3, 38, 0.85);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 24px rgba(255, 46, 136, 0.35);
+}
+
+.arcade-logo {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 14px;
+    color: var(--neon-yellow);
+    text-shadow: 0 0 8px var(--neon-yellow), 0 0 16px rgba(255, 233, 74, 0.5);
+}
+
+.arcade-logo span {
+    color: var(--neon-pink);
+    text-shadow: 0 0 8px var(--neon-pink);
+}
+
+.arcade-status {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 9px;
+    color: var(--neon-green);
+    text-shadow: 0 0 6px var(--neon-green);
+    animation: blink 1.6s step-end infinite;
+}
+
+.arcade-main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.cabinet {
+    width: 100%;
+    max-width: 440px;
+    background: var(--bg-panel);
+    border: 3px solid var(--neon-cyan);
+    border-radius: 4px;
+    padding: 32px 28px 28px;
+    position: relative;
+    box-shadow:
+        0 0 0 4px var(--bg-deep),
+        0 0 0 6px var(--neon-pink),
+        0 0 40px rgba(34, 230, 255, 0.35),
+        inset 0 0 40px rgba(34, 230, 255, 0.05);
+}
+
+.cabinet::before {
+    content: 'INSERT COIN';
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg-deep);
+    padding: 2px 12px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 9px;
+    color: var(--neon-yellow);
+    text-shadow: 0 0 8px var(--neon-yellow);
+    letter-spacing: 0.15em;
+}
+
+.cabinet-title {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 20px;
+    color: var(--neon-pink);
+    text-align: center;
+    margin-bottom: 6px;
+    text-shadow:
+        2px 2px 0 var(--neon-cyan),
+        0 0 12px rgba(255, 46, 136, 0.6);
+    letter-spacing: 0.05em;
+}
+
+.cabinet-subtitle {
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 16px;
+    margin-bottom: 24px;
+    letter-spacing: 0.2em;
+}
+
+.cabinet-subtitle::before,
+.cabinet-subtitle::after {
+    content: '★';
+    color: var(--neon-yellow);
+    margin: 0 8px;
+}
+
+.field {
+    margin-bottom: 18px;
+}
+
+.field-label {
+    display: block;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 9px;
+    color: var(--neon-cyan);
+    margin-bottom: 8px;
+    text-shadow: 0 0 6px rgba(34, 230, 255, 0.6);
+    letter-spacing: 0.15em;
+}
+
+.field-input {
+    width: 100%;
+    background: var(--bg-deep);
+    border: 2px solid var(--neon-cyan);
+    color: var(--text-bright);
+    padding: 12px 14px;
+    font-family: 'VT323', monospace;
+    font-size: 20px;
+    letter-spacing: 0.08em;
+    outline: none;
+    transition: all 0.15s ease;
+    caret-color: var(--neon-pink);
+}
+
+.field-input:focus {
+    border-color: var(--neon-pink);
+    box-shadow: 0 0 0 2px var(--bg-deep), 0 0 16px rgba(255, 46, 136, 0.5);
+    background: #0a0220;
+}
+
+.field-input::placeholder {
+    color: var(--text-dim);
+    opacity: 0.7;
+}
+
+.field-error {
+    display: block;
+    margin-top: 6px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    color: var(--neon-red);
+    text-shadow: 0 0 6px rgba(255, 51, 85, 0.6);
+    letter-spacing: 0.1em;
+}
+
+.field-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 4px 0 22px;
+    font-size: 15px;
+}
+
+.checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-dim);
+    cursor: pointer;
+    user-select: none;
+}
+
+.checkbox input {
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border: 2px solid var(--neon-cyan);
+    background: var(--bg-deep);
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+}
+
+.checkbox input:checked {
+    background: var(--neon-cyan);
+    box-shadow: 0 0 8px var(--neon-cyan);
+}
+
+.link {
+    color: var(--neon-yellow);
+    text-decoration: none;
+    border-bottom: 1px dashed transparent;
+    transition: border-color 0.15s;
+}
+
+.link:hover {
+    border-bottom-color: var(--neon-yellow);
+    text-shadow: 0 0 6px var(--neon-yellow);
+}
+
+.press-btn {
+    width: 100%;
+    background: var(--neon-pink);
+    color: var(--bg-deep);
+    border: none;
+    padding: 16px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.05s ease, box-shadow 0.15s;
+    box-shadow:
+        4px 4px 0 var(--neon-cyan),
+        0 0 20px rgba(255, 46, 136, 0.5);
+}
+
+.press-btn:hover {
+    background: var(--neon-yellow);
+    box-shadow:
+        4px 4px 0 var(--neon-cyan),
+        0 0 24px rgba(255, 233, 74, 0.6);
+}
+
+.press-btn:active {
+    transform: translate(3px, 3px);
+    box-shadow: 1px 1px 0 var(--neon-cyan);
+}
+
+.divider {
+    margin: 22px 0 18px;
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 14px;
+    letter-spacing: 0.3em;
+    position: relative;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 34%;
+    height: 1px;
+    background: var(--text-dim);
+    opacity: 0.4;
+}
+
+.divider::before { left: 0; }
+.divider::after  { right: 0; }
+
+.footer-hint {
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 15px;
+}
+
+.arcade-footer {
+    padding: 14px 24px;
+    border-top: 2px solid var(--neon-cyan);
+    background: rgba(13, 3, 38, 0.85);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    color: var(--text-dim);
+    letter-spacing: 0.15em;
+    box-shadow: 0 0 24px rgba(34, 230, 255, 0.25);
+}
+
+.arcade-footer .hi-score {
+    color: var(--neon-yellow);
+    text-shadow: 0 0 6px var(--neon-yellow);
+}
+
+.flash-error {
+    margin-bottom: 18px;
+    padding: 10px 12px;
+    border: 2px dashed var(--neon-red);
+    background: rgba(255, 51, 85, 0.08);
+    color: var(--neon-red);
+    font-family: 'Press Start 2P', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-align: center;
+    text-shadow: 0 0 6px rgba(255, 51, 85, 0.5);
+}
+
+.flash-success {
+    margin-bottom: 18px;
+    padding: 10px 12px;
+    border: 2px dashed var(--neon-green);
+    background: rgba(57, 255, 136, 0.08);
+    color: var(--neon-green);
+    font-family: 'Press Start 2P', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-align: center;
+    text-shadow: 0 0 6px rgba(57, 255, 136, 0.5);
+}
+
+@keyframes blink {
+    50% { opacity: 0.15; }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-4px); }
+}
+
+.pixel-mascot {
+    position: absolute;
+    top: -34px;
+    right: -24px;
+    font-size: 42px;
+    animation: float 2.4s ease-in-out infinite;
+    filter: drop-shadow(0 0 8px var(--neon-pink));
+}
+
+.dashboard-wrap {
+    padding: 60px 24px;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.dashboard-hero {
+    background: var(--bg-panel);
+    border: 3px solid var(--neon-cyan);
+    padding: 32px;
+    box-shadow: 0 0 0 4px var(--bg-deep), 0 0 0 6px var(--neon-pink), 0 0 40px rgba(34, 230, 255, 0.3);
+    text-align: center;
+}
+
+.dashboard-hero h1 {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 22px;
+    color: var(--neon-yellow);
+    text-shadow: 2px 2px 0 var(--neon-pink), 0 0 12px rgba(255, 233, 74, 0.5);
+    margin-bottom: 10px;
+}
+
+.dashboard-hero p {
+    color: var(--text-dim);
+    font-size: 18px;
+    letter-spacing: 0.1em;
+}
+
+.dashboard-hero .logout {
+    margin-top: 24px;
+    display: inline-block;
+}
+
+.dashboard-hero .logout button {
+    background: transparent;
+    border: 2px solid var(--neon-red);
+    color: var(--neon-red);
+    padding: 10px 22px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    cursor: pointer;
+    text-shadow: 0 0 6px rgba(255, 51, 85, 0.5);
+    transition: all 0.15s;
+}
+
+.dashboard-hero .logout button:hover {
+    background: var(--neon-red);
+    color: var(--bg-deep);
+    text-shadow: none;
+    box-shadow: 0 0 20px rgba(255, 51, 85, 0.6);
+}
+
+@media (max-width: 480px) {
+    .arcade-marquee { padding: 14px 16px; }
+    .arcade-logo    { font-size: 11px; }
+    .arcade-status  { font-size: 8px; }
+    .cabinet        { padding: 28px 20px 22px; }
+    .cabinet-title  { font-size: 16px; }
+    .pixel-mascot   { display: none; }
+}
