@@ -4,12 +4,16 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
 class LoginRequest extends FormRequest
 {
+    private const MAX_ATTEMPTS = 5;
+    private const DECAY_SECONDS = 300;
+
     public function authorize(): bool
     {
         return true;
@@ -38,7 +42,14 @@ class LoginRequest extends FormRequest
         $this->ensureIsNotRateLimited();
 
         if (!Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
-            RateLimiter::hit($this->throttleKey());
+            RateLimiter::hit($this->throttleKey(), self::DECAY_SECONDS);
+
+            Log::warning('Failed login attempt', [
+                'email' => (string) $this->string('email'),
+                'ip' => $this->ip(),
+                'user_agent' => (string) $this->userAgent(),
+                'attempts' => RateLimiter::attempts($this->throttleKey()),
+            ]);
 
             throw ValidationException::withMessages([
                 'email' => 'ACCESS DENIED — CREDENTIALS DO NOT MATCH ANY RECORD',
@@ -50,11 +61,17 @@ class LoginRequest extends FormRequest
 
     public function ensureIsNotRateLimited(): void
     {
-        if (!RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
+        if (!RateLimiter::tooManyAttempts($this->throttleKey(), self::MAX_ATTEMPTS)) {
             return;
         }
 
         $seconds = RateLimiter::availableIn($this->throttleKey());
+
+        Log::warning('Login rate limit hit', [
+            'email' => (string) $this->string('email'),
+            'ip' => $this->ip(),
+            'retry_in_seconds' => $seconds,
+        ]);
 
         throw ValidationException::withMessages([
             'email' => "SYSTEM LOCKED — RETRY IN {$seconds}s",
@@ -63,6 +80,6 @@ class LoginRequest extends FormRequest
 
     public function throttleKey(): string
     {
-        return Str::transliterate(Str::lower($this->string('email')) . '|' . $this->ip());
+        return Str::transliterate(Str::lower((string) $this->string('email')) . '|' . $this->ip());
     }
 }

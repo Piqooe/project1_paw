@@ -18,7 +18,16 @@ class RegisterRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:50', 'min:3'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
-            'password' => ['required', 'confirmed', Password::min(8)->letters()->numbers()],
+            'password' => [
+                'required',
+                'confirmed',
+                Password::min(8)
+                    ->mixedCase()
+                    ->letters()
+                    ->numbers()
+                    ->symbols()
+                    ->uncompromised(),
+            ],
         ];
     }
 
@@ -34,6 +43,11 @@ class RegisterRequest extends FormRequest
             'password.required' => 'ACCESS CODE REQUIRED',
             'password.confirmed' => 'ACCESS CODE CONFIRMATION FAILED',
             'password.min' => 'ACCESS CODE TOO WEAK (MIN 8 CHARS)',
+            'password.mixed' => 'ACCESS CODE MUST MIX UPPER & LOWER CASE',
+            'password.letters' => 'ACCESS CODE MUST CONTAIN LETTERS',
+            'password.numbers' => 'ACCESS CODE MUST CONTAIN NUMBERS',
+            'password.symbols' => 'ACCESS CODE MUST CONTAIN A SYMBOL',
+            'password.uncompromised' => 'ACCESS CODE HAS APPEARED IN A DATA BREACH — CHOOSE ANOTHER',
         ];
     }
 }

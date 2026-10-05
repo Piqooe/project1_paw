@@ -29,8 +29,11 @@
 
             <div class="field">
                 <label class="field-label" for="password">ACCESS CODE</label>
-                <input id="password" class="field-input" type="password" name="password" placeholder="MIN 8 CHARS"
-                    autocomplete="new-password" required>
+                <input id="password" class="field-input" type="password" name="password"
+                    placeholder="8+ CHARS, Aa, 0-9, SYMBOL" autocomplete="new-password" minlength="8" required>
+                <small class="field-hint" style="opacity:.7;font-size:.75em">
+                    MIN 8 CHARS · UPPER + LOWER · NUMBER · SYMBOL · NOT LEAKED
+                </small>
                 @error('password')
                     <span class="field-error">▲ {{ $message }}</span>
                 @enderror

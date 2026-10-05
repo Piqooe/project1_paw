@@ -32,11 +32,20 @@ php artisan serve
 `http://localhost:8000`.
 
 <!-- buat ui nanti -->
+
 ```bash
 npm run dev
 ```
 
 <!-- buat production -->
+
 ```bash
 npm run build
+```
+
+<!-- buat verif email di development -->
+
+```bash
+php artisan tinker
+App\Models\User::query()->update(['email_verified_at' => now()]);
 ```

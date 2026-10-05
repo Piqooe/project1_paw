@@ -9,6 +9,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
 
 class RegisterController extends Controller
@@ -21,14 +22,21 @@ class RegisterController extends Controller
     public function store(RegisterRequest $request): RedirectResponse
     {
         $user = User::create([
-            'name' => $request->string('name'),
-            'email' => $request->string('email'),
-            'password' => Hash::make($request->string('password')),
+            'name' => (string) $request->string('name'),
+            'email' => (string) $request->string('email'),
+            'password' => Hash::make((string) $request->string('password')),
         ]);
 
         event(new Registered($user));
-        Auth::login($user);
 
-        return redirect()->route('dashboard');
+        Auth::login($user);
+        $request->session()->regenerate();
+
+        Log::info('New user registered', [
+            'user_id' => $user->id,
+            'ip' => $request->ip(),
+        ]);
+
+        return redirect()->route('verification.notice');
     }
 }
