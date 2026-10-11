@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -27,8 +26,6 @@ class RegisterController extends Controller
             'password' => Hash::make((string) $request->string('password')),
         ]);
 
-        event(new Registered($user));
-
         Auth::login($user);
         $request->session()->regenerate();
 
@@ -37,6 +34,6 @@ class RegisterController extends Controller
             'ip' => $request->ip(),
         ]);
 
-        return redirect()->route('verification.notice');
+        return redirect()->route('dashboard');
     }
 }

@@ -9,10 +9,7 @@ class DashboardController extends Controller implements HasMiddleware
 {
     public static function middleware(): array
     {
-        return [
-            'auth',
-            'verified',
-        ];
+        return ['auth'];
     }
 
     public function index(): View

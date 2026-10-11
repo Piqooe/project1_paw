@@ -42,10 +42,3 @@ npm run dev
 ```bash
 npm run build
 ```
-
-<!-- buat verif email di development -->
-
-```bash
-php artisan tinker
-App\Models\User::query()->update(['email_verified_at' => now()]);
-```

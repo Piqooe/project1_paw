@@ -3,12 +3,33 @@
 namespace Tests\Feature;
 
 use App\Models\Game;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class GameApiTest extends TestCase
 {
     use RefreshDatabase;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->actingAs(User::factory()->unverified()->create());
+    }
+
+    public function test_unverified_user_can_access_protected_features(): void
+    {
+        $user = User::factory()->unverified()->create();
+
+        $this->actingAs($user)
+            ->get('/dashboard')
+            ->assertOk();
+
+        $this->actingAs($user)
+            ->getJson('/games')
+            ->assertOk();
+    }
 
     public function test_can_get_all_games(): void
     {
@@ -20,19 +41,19 @@ class GameApiTest extends TestCase
     public function test_can_create_game(): void
     {
         $payload = [
-            'nama'      => 'God of War Ragnarok',
+            'nama' => 'God of War Ragnarok',
             'developer' => 'Santa Monica Studio',
-            'tahun'     => 2022,
-            'rilis'     => '2022-11-09',
-            'genre'     => 'Action-Adventure',
-            'harga'     => 879000,
+            'tahun' => 2022,
+            'rilis' => '2022-11-09',
+            'genre' => 'Action-Adventure',
+            'harga' => 879000,
         ];
 
         $response = $this->postJson('/games', $payload);
 
         $response->assertStatus(201)
-                 ->assertJsonPath('message', 'Data game berhasil ditambahkan.')
-                 ->assertJsonPath('data.nama', 'God of War Ragnarok');
+            ->assertJsonPath('message', 'Data game berhasil ditambahkan.')
+            ->assertJsonPath('data.nama', 'God of War Ragnarok');
 
         $this->assertDatabaseHas('games', [
             'nama' => 'God of War Ragnarok',
@@ -42,29 +63,29 @@ class GameApiTest extends TestCase
     public function test_can_show_game(): void
     {
         $game = Game::create([
-            'nama'      => 'Spider-Man 2',
+            'nama' => 'Spider-Man 2',
             'developer' => 'Insomniac Games',
-            'tahun'     => 2023,
-            'rilis'     => '2023-10-20',
-            'genre'     => 'Action',
-            'harga'     => 1029000,
+            'tahun' => 2023,
+            'rilis' => '2023-10-20',
+            'genre' => 'Action',
+            'harga' => 1029000,
         ]);
 
         $response = $this->getJson("/games/{$game->id}");
 
         $response->assertStatus(200)
-                 ->assertJsonPath('nama', 'Spider-Man 2');
+            ->assertJsonPath('nama', 'Spider-Man 2');
     }
 
     public function test_can_update_game(): void
     {
         $game = Game::create([
-            'nama'      => 'Cyberpunk 2077',
+            'nama' => 'Cyberpunk 2077',
             'developer' => 'CD Projekt Red',
-            'tahun'     => 2020,
-            'rilis'     => '2020-12-10',
-            'genre'     => 'RPG',
-            'harga'     => 699000,
+            'tahun' => 2020,
+            'rilis' => '2020-12-10',
+            'genre' => 'RPG',
+            'harga' => 699000,
         ]);
 
         $response = $this->putJson("/games/{$game->id}", [
@@ -72,25 +93,25 @@ class GameApiTest extends TestCase
         ]);
 
         $response->assertStatus(200)
-                 ->assertJsonPath('message', 'Data game berhasil diperbarui.')
-                 ->assertJsonPath('data.harga', 350000);
+            ->assertJsonPath('message', 'Data game berhasil diperbarui.')
+            ->assertJsonPath('data.harga', 350000);
     }
 
     public function test_can_delete_game(): void
     {
         $game = Game::create([
-            'nama'      => 'Game to Delete',
+            'nama' => 'Game to Delete',
             'developer' => 'Tester',
-            'tahun'     => 2024,
-            'rilis'     => '2024-01-01',
-            'genre'     => 'Test',
-            'harga'     => 10000,
+            'tahun' => 2024,
+            'rilis' => '2024-01-01',
+            'genre' => 'Test',
+            'harga' => 10000,
         ]);
 
         $response = $this->deleteJson("/games/{$game->id}");
 
         $response->assertStatus(200)
-                 ->assertJsonPath('message', 'Data game berhasil dihapus.');
+            ->assertJsonPath('message', 'Data game berhasil dihapus.');
 
         $this->assertDatabaseMissing('games', [
             'id' => $game->id,
