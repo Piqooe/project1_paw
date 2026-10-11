@@ -1,3 +1,5 @@
+/* Game Archive - tema di atas Bootstrap 5 (dimuat setelah bootstrap.css) */
+
 :root {
     --bg:        #0f0d20;
     --card:      #15112f;
@@ -16,15 +18,17 @@
     --bs-body-color: #f1eefc;
 }
 
+/* ===== Latar ===== */
 body.arcade {
     min-height: 100vh;
     background:
-        url('/images/arcade-bg.png') center / cover no-repeat fixed,
+        url('/image/gambar%20pixel.jpg') center / cover no-repeat fixed,
         radial-gradient(circle at 30% 18%, #f5c58a 0 6%, transparent 6.3%) fixed,
         linear-gradient(180deg, #2a1b5a 0%, #4b2a86 55%, #1a1038 100%) fixed;
     image-rendering: pixelated;
 }
 
+/* ===== Navbar ===== */
 .arcade-nav {
     height: var(--nav-h);
     padding: 0;
@@ -39,9 +43,7 @@ body.arcade {
 }
 .arcade-brand:hover { color: #fff; }
 
-.arcade-nav .nav-link {
-    padding: 0 20px; font-size: 14px; color: #f1eefc;
-}
+.arcade-nav .nav-link { padding: 0 20px; font-size: 14px; color: #f1eefc; }
 .arcade-nav .nav-link:hover { color: #fff; }
 
 .btn-nav {
@@ -72,12 +74,11 @@ body.arcade {
     --bs-btn-active-border-color: #ff7a95;
 }
 
-.stage {
-    min-height: 100vh;
-    padding: var(--nav-h) 16px 0;
-}
+/* ===== Stage ===== */
+.stage { min-height: 100vh; padding: var(--nav-h) 16px 0; }
 @media (min-width: 992px) { .stage { padding-right: 104px; } }
 
+/* ===== Kartu 366px (login & register) ===== */
 .arcade-card {
     --bs-card-bg: var(--card);
     --bs-card-border-color: var(--border);
@@ -101,10 +102,9 @@ body.arcade {
     margin: 0; font: 15px/15px var(--pixel); text-transform: uppercase; color: #fff;
     text-shadow: 1.5px 0 rgba(143, 107, 255, .8);
 }
-.arcade-sub {
-    margin: 5px 0 39px; font-size: 10px; line-height: 12px; color: #e4e0f5;
-}
+.arcade-sub { margin: 5px 0 39px; font-size: 10px; line-height: 12px; color: #e4e0f5; }
 
+/* ===== Form ===== */
 .arcade-group { margin-bottom: 20px; }
 .arcade-group:last-of-type { margin-bottom: 36px; }
 
@@ -124,6 +124,7 @@ body.arcade {
 }
 .arcade-card .invalid-feedback { font-size: 10px; }
 
+/* ===== Tombol ===== */
 .btn-arcade {
     --bs-btn-color: #fff;
     --bs-btn-bg: var(--purple);
@@ -143,28 +144,7 @@ body.arcade {
 .arcade-foot a { color: var(--green); font-weight: 700; text-decoration: none; }
 .arcade-foot a:hover { color: var(--green); text-decoration: underline; }
 
-.dashboard-wrap { width: 100%; max-width: 960px; margin: 0 auto; }
-
-.dashboard-hero {
-    padding: 40px 32px; text-align: center;
-    background: var(--card); border: 1px solid var(--border);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, .4);
-}
-.dashboard-hero h1 {
-    margin: 0 0 14px; font: 18px/1.4 var(--pixel); color: #fff;
-    text-shadow: 1.5px 0 rgba(143, 107, 255, .8);
-}
-.dashboard-hero p { margin: 0; font-size: 14px; color: var(--muted); }
-
-.dashboard-hero .logout { margin-top: 28px; display: inline-block; }
-.dashboard-hero .logout button {
-    padding: 11px 22px; font: 10px var(--pixel); letter-spacing: 1px; cursor: pointer;
-    color: #ff7a95; background: transparent; border: 1px solid #ff7a95; border-radius: 0;
-    transition: background .15s, color .15s;
-}
-.dashboard-hero .logout button:hover { background: #ff7a95; color: var(--bg); }
-
-/* ===== Landing page ===== */
+/* ===== Landing page & About ===== */
 .stage-wide { justify-content: center; align-items: flex-start !important; padding-right: 16px !important; padding-bottom: 60px; }
 .landing { width: 100%; max-width: 1000px; }
 
@@ -180,8 +160,11 @@ body.arcade {
 }
 .landing-desc { max-width: 520px; margin: 0 auto; font-size: 14px; line-height: 1.6; color: var(--muted); }
 
-.landing-btn { height: 40px; min-width: 160px; padding: 0 24px; font-size: 12px; font-weight: 700; text-transform: uppercase; margin-left: 0; }
-.landing-btn-ghost { justify-content: center; }
+.landing-btn {
+    height: 40px; min-width: 160px; padding: 0 24px; margin-left: 0;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; text-transform: uppercase;
+}
 
 .landing-heading {
     margin: 0 0 28px; text-align: center; font: 18px/1.3 var(--pixel); text-transform: uppercase; color: #fff;
@@ -207,13 +190,6 @@ body.arcade {
 .member-nim  { margin: 0 0 10px; font: 9px/1.4 var(--pixel); color: var(--green); }
 .member-role { margin: 0; font-size: 12px; color: var(--muted); }
 
-@media (max-width: 767px) {
-    .landing-hero { margin: 32px auto 48px; padding: 36px 18px; }
-    .landing-title { font-size: 22px; }
-}
-@media (prefers-reduced-motion: reduce) { .member-card { transition: none; } }
-
-/* ===== Landing di tengah layar & kartu info (About) ===== */
 .landing-center { min-height: calc(100vh - var(--nav-h) - 60px); display: flex; align-items: center; }
 .landing-center .landing-hero { width: 100%; margin: 0 auto; }
 
@@ -229,3 +205,27 @@ body.arcade {
 .info-row:last-child { border-bottom: 0; }
 .info-label { color: var(--muted); }
 .info-value { font-weight: 700; color: #fff; text-align: right; }
+
+/* ===== Dashboard ===== */
+.dashboard-wrap { width: 100%; max-width: 960px; margin: 0 auto; }
+
+.dashboard-hero {
+    padding: 40px 32px; text-align: center;
+    background: var(--card); border: 1px solid var(--border);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, .4);
+}
+.dashboard-hero h1 {
+    margin: 0 0 14px; font: 18px/1.4 var(--pixel); color: #fff;
+    text-shadow: 1.5px 0 rgba(143, 107, 255, .8);
+}
+.dashboard-hero p { margin: 0; font-size: 14px; color: var(--muted); }
+
+.dashboard-hero .logout { margin-top: 28px; display: inline-block; }
+.dashboard-hero .logout button {
+    padding: 11px 22px; font: 10px var(--pixel); letter-spacing: 1px; cursor: pointer;
+    color: #ff7a95; background: transparent; border: 1px solid #ff7a95; border-radius: 0;
+    transition: background .15s, color .15s;
+}
+.dashboard-hero .logout button:hover { background: #ff7a95; color: var(--bg); }
+
+@media (prefers-reduced-motion: reduce) { .member-card { transition: none; } }
