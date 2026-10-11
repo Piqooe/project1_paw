@@ -13,5 +13,6 @@ class Game extends Model
         'rilis',
         'genre',
         'harga',
+        'gambar',
     ];
 }
