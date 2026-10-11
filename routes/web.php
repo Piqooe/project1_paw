@@ -24,5 +24,3 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::apiResource('games', GameController::class);
 }); 
-
-
