@@ -1,33 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="id" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ $title ?? 'Kelompok 1' }}</title>
+    <title>@yield('title', $title ?? 'Game Archive')</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="{{ asset('css/arcade.css') }}?v={{ filemtime(public_path('css/arcade.css')) }}">
 </head>
+<body class="arcade">
 
-<body>
-    <div class="arcade-shell">
-        <header class="arcade-marquee">
-            <div class="arcade-logo">KELOMPOK <span>1</span> GACOR</div>
-            <div class="arcade-status">ONLINE</div>
-        </header>
+    <nav class="navbar navbar-expand-md fixed-top arcade-nav">
+        <div class="container-fluid arcade-nav-inner">
+            <a class="navbar-brand arcade-brand" href="{{ url('/') }}">
+                <svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true">
+                    <path fill="#7d7d8f" d="M6 6h12a4 4 0 0 1 4 4v4a4 4 0 0 1-4 4h-1l-2-2h-6l-2 2H6a4 4 0 0 1-4-4v-4a4 4 0 0 1 4-4z"/>
+                    <path fill="#14122b" d="M6 10h1.5V8.5H9V10h1.5v1.5H9V13H7.5v-1.5H6zM15 10h2v2h-2z"/>
+                </svg>
+                <span>Game Archive</span>
+            </a>
 
-        <main class="arcade-main">
-            @yield('content')
-        </main>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <footer class="arcade-footer">
-            <span>© {{ date('Y') }} CIHUY.</span>
-            <span class="hi-score">HI-SCORE 999999</span>
-            <span>1P READY</span>
-        </footer>
-    </div>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto align-items-md-center">
+                    <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                    @auth
+                        <li class="nav-item ms-md-1">
+                            <a class="btn btn-nav" href="{{ url('/dashboard') }}">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <form method="POST" action="{{ route('logout') }}" class="m-0">
+                                @csrf
+                                <button type="submit" class="btn btn-nav btn-nav-logout">Logout</button>
+                            </form>
+                        </li>
+                    @else
+                        <li class="nav-item ms-md-1">
+                            <a class="btn btn-nav" href="{{ route('login') }}">Login</a>
+                        </li>
+                    @endauth
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="stage d-flex align-items-center @hasSection('wide') stage-wide @else justify-content-center justify-content-lg-end @endif">
+        @yield('content')
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
