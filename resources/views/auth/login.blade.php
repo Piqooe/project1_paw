@@ -1,53 +1,45 @@
-@extends('layouts.arcade', ['title' => 'Login — Kelompok 1'])
+@extends('layouts.arcade')
+
+@section('title', 'Login - Game Archive')
 
 @section('content')
-    <section class="cabinet">
-        <div class="pixel-mascot">👾</div>
-        <h1 class="cabinet-title">PLAYER LOGIN</h1>
-        <p class="cabinet-subtitle">PRESS START</p>
+<div class="card arcade-card">
+    <div class="card-header arcade-card-head">Game Archive</div>
+
+    <div class="card-body arcade-card-body">
+        <h1 class="arcade-title">Welcome Back</h1>
+        <p class="arcade-sub">Log in to access your collection and continue the adventure.</p>
 
         @if (session('status'))
-            <div class="flash-success">{{ session('status') }}</div>
-        @endif
-
-        @if ($errors->has('email') && !$errors->has('password'))
-            <div class="flash-error">{{ $errors->first('email') }}</div>
+            <div class="alert alert-success py-2 mb-3" role="alert">{{ session('status') }}</div>
         @endif
 
         <form method="POST" action="{{ route('login') }}" novalidate>
             @csrf
 
-            <div class="field">
-                <label class="field-label" for="email">PLAYER ID</label>
-                <input id="email" class="field-input" type="email" name="email" value="{{ old('email') }}"
-                    placeholder="you@arcade.zone" autocomplete="username" autofocus required>
-                @error('email')
-                    <span class="field-error">▲ {{ $message }}</span>
-                @enderror
+            <div class="arcade-group">
+                <label for="email" class="form-label">Email</label>
+                <input id="email" type="email" name="email"
+                       class="form-control @error('email') is-invalid @enderror"
+                       value="{{ old('email') }}" placeholder="Enter your email"
+                       required autofocus autocomplete="username">
+                @error('email') <div class="invalid-feedback">{{ $message }}</div> @enderror
             </div>
 
-            <div class="field">
-                <label class="field-label" for="password">ACCESS CODE</label>
-                <input id="password" class="field-input" type="password" name="password" placeholder="••••••••"
-                    autocomplete="current-password" required>
-                @error('password')
-                    <span class="field-error">▲ {{ $message }}</span>
-                @enderror
+            <div class="arcade-group">
+                <label for="password" class="form-label">Password</label>
+                <input id="password" type="password" name="password"
+                       class="form-control @error('password') is-invalid @enderror"
+                       placeholder="Enter your password" required autocomplete="current-password">
+                @error('password') <div class="invalid-feedback">{{ $message }}</div> @enderror
             </div>
 
-            <div class="field-row">
-                <label class="checkbox">
-                    <input type="checkbox" name="remember" value="1" @checked(old('remember'))>
-                    <span>SAVE PROGRESS</span>
-                </label>
-            </div>
-
-            <button type="submit" class="press-btn">▶ START GAME</button>
+            <button type="submit" class="btn btn-arcade w-100">Login &rarr;</button>
         </form>
 
-        <div class="divider">— OR —</div>
-        <p class="footer-hint">
-            NEW CHALLENGER? <a class="link" href="{{ route('register') }}">CREATE PLAYER</a>
+        <p class="arcade-foot">
+            Don't have an account? <a href="{{ route('register') }}">Register</a>
         </p>
-    </section>
+    </div>
+</div>
 @endsection

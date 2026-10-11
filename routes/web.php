@@ -6,7 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GameController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', fn() => redirect()->route('login'));
+Route::get('/', fn() => redirect(welcome)->route('home'));
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'show'])->name('login');

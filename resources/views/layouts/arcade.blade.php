@@ -34,7 +34,7 @@
             <div class="collapse navbar-collapse" id="mainNav">
                 <ul class="navbar-nav ms-auto align-items-md-center">
                     <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('about') }}">About</a></li>
                     @auth
                         <li class="nav-item ms-md-1">
                             <a class="btn btn-nav" href="{{ url('/dashboard') }}">Dashboard</a>
