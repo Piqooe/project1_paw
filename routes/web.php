@@ -7,7 +7,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GameController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', fn() => redirect()->route('login'));
+Route::get('/', fn() => view('welcome'))->name('home');
+Route::get('/about', fn() => view('about'))->name('about');
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'show'])->name('login');
@@ -36,5 +37,3 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::apiResource('games', GameController::class);
 });
-
-
