@@ -73,7 +73,7 @@
     text-decoration: none;
     letter-spacing: 1px;
     color: #fff;
-    background: #1a1738;                 /* sama dengan alt: tampil normal */
+    background: #1a1738;                 
     border: 2px solid var(--purple-hi);
     border-radius: 0;
     transition: background-color .12s, box-shadow .12s, transform .12s;
@@ -81,7 +81,7 @@
 
 .rt-btn:hover,
 .rt-btn:focus-visible {
-    background: #2a2158;                 /* lebih terang hanya saat hover */
+    background: #2a2158;                 
     box-shadow: 4px 4px 0 #22e4f2;
     transform: translate(-2px, -2px);
     color: #fff;
@@ -409,40 +409,6 @@
 @keyframes rt-blink {
     50% {
         opacity: 0;
-    }
-}
-
-@media (max-width: 575px) {
-    .rt-hero {
-        padding: 40px 16px 36px;
-    }
-
-    .rt-btn {
-        min-width: 100%;
-    }
-
-    .rt-h::before,
-    .rt-h::after {
-        max-width: 40px;
-    }
-
-    .rt-team-head {
-        align-items: flex-start;
-        flex-wrap: wrap;
-        padding: 18px;
-    }
-
-    .rt-team-copy {
-        flex: 1 1 calc(100% - 66px);
-    }
-
-    .rt-team-count {
-        margin-left: 66px;
-    }
-
-    .rt-team-grid {
-        grid-template-columns: 1fr;
-        padding: 18px;
     }
 }
 

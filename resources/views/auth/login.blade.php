@@ -53,7 +53,9 @@
                 @error('password') <div class="invalid-feedback">{{ $message }}</div> @enderror
             </div>
 
-            <button type="submit" class="btn btn-arcade w-100">Login &rarr;</button>
+                  <button type="submit" class="btn btn-arcade w-100">
+                         <span class="btn-play"></span><span>Login</span>
+                </button>
         </form>
 
         <p class="arcade-foot">

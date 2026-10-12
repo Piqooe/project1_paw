@@ -27,6 +27,7 @@
 }
 
 .btn-arcade {
+    display: inline-flex;
     --bs-btn-color: #fff;
     --bs-btn-bg: var(--purple);
     --bs-btn-border-color: var(--purple);
@@ -37,19 +38,22 @@
     --bs-btn-active-border-color: var(--purple-hi);
     --bs-btn-focus-shadow-rgb: 126, 82, 218;
     --bs-btn-border-radius: 0;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
     height: 37px;
     padding: 0;
-    font-size: 11px;
+    font: 9px/1.9 var(--pixel);
     font-weight: 700;
     text-transform: uppercase;
 }
 
-@media (prefers-reduced-motion: reduce) {
-    .btn-nav {
-        transition: none;
-    }
-
-    .btn-nav-logout:active {
-        transform: none;
-    }
+.btn-play {
+    flex: 0 0 auto;
+    width: 0;
+    height: 0;
+    margin: 0;              
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 8px solid currentColor;
 }
