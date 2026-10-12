@@ -28,7 +28,7 @@
             'code' => 'BE',
             'members' => [
                 ['name' => 'Muhammad Qalbi Al Arsyad', 'nim' => '255150707111005', 'task' => 'CRUD System'],
-                ['name' => 'Muhammad Fiqo Kholasul Fuad', 'nim' => '255150701111028', 'task' => 'Login & Logout'],
+                ['name' => 'Muhammad Fiqo Kholasul Fuad', 'nim' => '255150701111028', 'task' => 'Login & Logout', 'foto' => 'image/foto_team/tes_aja.jpeg'],
             ],
         ],
     ];
@@ -88,7 +88,13 @@
                             @foreach ($group['members'] as $i => $m)
                                 <article class="rt-card rt-player">
                                     <span class="rt-tag">{{ $group['code'] }}-0{{ $i + 1 }}</span>
-                                    <div class="rt-avatar" aria-hidden="true">{{ strtoupper(mb_substr($m['name'], 0, 1)) }}</div>
+                                    <div class="rt-avatar">
+                                        @if (!empty($m['foto']))
+                                            <img src="{{ $m['foto'] }}" alt="{{ $m['name'] }}">
+                                        @else
+                                            {{ strtoupper(mb_substr($m['name'], 0, 1)) }}
+                                        @endif
+                                    </div>
                                     <h4 class="rt-name">{{ $m['name'] }}</h4>
                                     <p class="rt-nim-label">NIM</p>
                                     <p class="rt-nim">{{ $m['nim'] }}</p>
