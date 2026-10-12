@@ -62,7 +62,9 @@
                        class="form-control" placeholder="Repeat your password" required autocomplete="new-password">
             </div>
 
-            <button type="submit" class="btn btn-arcade w-100">Register &rarr;</button>
+                <button type="submit" class="btn btn-arcade w-100">
+                         <span class="btn-play"></span><span>Register</span>
+                </button>
         </form>
 
         <p class="arcade-foot">

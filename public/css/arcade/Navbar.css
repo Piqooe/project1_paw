@@ -51,21 +51,21 @@
     background: repeating-linear-gradient(90deg, #ffd23f 0 6px, transparent 6px 9px);
 }
 
-@media (max-width: 767px) {
-    .arcade-nav .nav-link {
-        padding: 14px 4px;
+@media (min-width: 768px) {
+    .arcade-nav-inner {
+        position: relative;
     }
 
-    .arcade-nav .nav-link.active::after {
-        left: 4px;
-        right: auto;
-        width: 40px;
-        bottom: 6px;
+    .arcade-nav-center {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        flex-direction: row;
+        gap: 6px;
     }
-}
 
-@media (prefers-reduced-motion: reduce) {
-    .arcade-nav .nav-link {
-        transition: none;
+    .arcade-nav-right {
+        margin-left: auto;
+        flex-direction: row;
     }
 }
