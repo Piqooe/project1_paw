@@ -1,0 +1,48 @@
+.dashboard-wrap {
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.dashboard-hero {
+    padding: 40px 32px;
+    text-align: center;
+    background: var(--card);
+    border: 1px solid var(--border);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, .4);
+}
+
+.dashboard-hero h1 {
+    margin: 0 0 14px;
+    font: 18px/1.4 var(--pixel);
+    color: #fff;
+    text-shadow: 1.5px 0 rgba(143, 107, 255, .8);
+}
+
+.dashboard-hero p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--muted);
+}
+
+.dashboard-hero .logout {
+    margin-top: 28px;
+    display: inline-block;
+}
+
+.dashboard-hero .logout button {
+    padding: 11px 22px;
+    font: 10px var(--pixel);
+    letter-spacing: 1px;
+    cursor: pointer;
+    color: #ff7a95;
+    background: transparent;
+    border: 1px solid #ff7a95;
+    border-radius: 0;
+    transition: background .15s, color .15s;
+}
+
+.dashboard-hero .logout button:hover {
+    background: #ff7a95;
+    color: var(--bg);
+}

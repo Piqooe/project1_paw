@@ -2,6 +2,10 @@
 
 @section('title', 'Login - Game Archive')
 
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/arcade/auth.css') }}?v={{ filemtime(public_path('css/arcade/auth.css')) }}">
+@endpush
+
 @section('content')
 <div class="card arcade-card">
     <div class="card-header arcade-card-head">Game Archive</div>

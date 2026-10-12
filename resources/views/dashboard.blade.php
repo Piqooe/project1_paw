@@ -1,5 +1,9 @@
 @extends('layouts.arcade', ['title' => 'Lobby — Kelompok 1'])
 
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/arcade/dashboard.css') }}?v={{ filemtime(public_path('css/arcade/dashboard.css')) }}">
+@endpush
+
 @section('content')
     <div class="dashboard-wrap">
         <div class="dashboard-hero">
