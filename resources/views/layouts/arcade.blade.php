@@ -12,7 +12,11 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="{{ asset('css/arcade.css') }}?v={{ filemtime(public_path('css/arcade.css')) }}">
+    @foreach (['base', 'navbar', 'buttons'] as $css)
+        <link rel="stylesheet" href="{{ asset("css/arcade/{$css}.css") }}?v={{ filemtime(public_path("css/arcade/{$css}.css")) }}">
+    @endforeach
+
+    @stack('styles')
 </head>
 <body class="arcade">
 

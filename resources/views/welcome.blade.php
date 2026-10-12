@@ -1,5 +1,9 @@
 @extends('layouts.arcade', ['title' => 'Game Archive - Kelompok 1'])
 
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/arcade/rt.css') }}?v={{ filemtime(public_path('css/arcade/rt.css')) }}">
+@endpush
+
 @section('wide', '1')
 
 @section('content')
