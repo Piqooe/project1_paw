@@ -53,6 +53,11 @@
                 @error('password') <div class="invalid-feedback">{{ $message }}</div> @enderror
             </div>
 
+            <div class="arcade-remember">
+                <input type = "checkbox" name = "remember" id = "remember" value = "1"
+                    class =  "form-check-input" {{old ('remember') ? 'checked' : '' }}>
+                <label for = "remember" class = "arcade-remember-label"> Save Progress</label>
+            </div>
                   <button type="submit" class="btn btn-arcade w-100">
                          <span class="btn-play"></span><span>Login</span>
                 </button>
