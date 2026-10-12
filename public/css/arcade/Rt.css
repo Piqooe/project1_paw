@@ -73,31 +73,32 @@
     text-decoration: none;
     letter-spacing: 1px;
     color: #fff;
-    background: var(--purple);
-    border: 0;
+    background: #1a1738;                 /* sama dengan alt: tampil normal */
+    border: 2px solid var(--purple-hi);
     border-radius: 0;
-    box-shadow: 5px 5px 0 #22e4f2;
-    transition: transform .08s, box-shadow .08s, background .15s;
+    transition: background-color .12s, box-shadow .12s, transform .12s;
 }
 
-.rt-btn:hover {
+.rt-btn:hover,
+.rt-btn:focus-visible {
+    background: #2a2158;                 /* lebih terang hanya saat hover */
+    box-shadow: 4px 4px 0 #22e4f2;
+    transform: translate(-2px, -2px);
     color: #fff;
-    background: var(--purple-hi);
 }
 
 .rt-btn:active {
-    transform: translate(4px, 4px);
     box-shadow: 1px 1px 0 #22e4f2;
+    transform: translate(1px, 1px);
 }
 
 .rt-btn-alt {
     background: #1a1738;
-    border: 2px solid var(--purple-hi);
-    box-shadow: 5px 5px 0 #0f0d20;
-    padding: 14px 20px;
+    border-color: var(--purple-hi);
 }
 
-.rt-btn-alt:hover {
+.rt-btn-alt:hover,
+.rt-btn-alt:focus-visible {
     background: #2a2158;
 }
 
@@ -340,11 +341,11 @@
 }
 
 .rt-avatar img {
-    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
+    object-position: center top;   
+    display: block;
 }
 
 .rt-name {
@@ -380,7 +381,6 @@
     border: 1px solid var(--line);
 }
 
-/* ===== Tech stack & footer ===== */
 .rt-chips {
     display: flex;
     flex-wrap: wrap;

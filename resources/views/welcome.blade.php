@@ -9,7 +9,6 @@
 @section('content')
 <div class="rt">
 
-    {{-- HERO --}}
     <section class="rt-panel rt-hero">
         <p class="rt-blink">&#9654; PRESS START &#9664;</p>
         <h1 class="rt-title">Game<br>Archive</h1>
@@ -28,7 +27,6 @@
         </div>
     </section>
 
-    {{-- FITUR --}}
     <section class="rt-section">
         <h2 class="rt-h">Features</h2>
         <div class="rt-grid">
@@ -50,7 +48,6 @@
         </div>
     </section>
 
-    {{-- CARA MAIN --}}
     <section class="rt-section">
         <h2 class="rt-h">How to Play</h2>
         <div class="rt-grid">

@@ -9,7 +9,7 @@
 @php
     $info = [
         'Mata Kuliah' => 'Pemrograman Aplikasi Web',
-        'Dosen Pengampu' => 'Djoko Pramono',
+        'Dosen Pengampu' => 'Djoko Pramono S.T.,M.Kom.',
         'Kelas' => 'Kelas A',
         'Tahun Ajaran' => '2026/2027',
     ];
@@ -21,8 +21,8 @@
             'description' => 'Tampilan, interaksi, dan pengalaman pengguna',
             'code' => 'FE',
             'members' => [
-                ['name' => 'Ahmad Roja Hakam', 'nim' => '255150701111005', 'task' => 'Login & Logout'],
-                ['name' => 'Farras Hariz Ibrahim', 'nim' => '255150707111010', 'task' => 'CRUD Interface'],
+                ['name' => 'Ahmad Roja Hakam', 'nim' => '255150701111005', 'task' => 'Login & Logout', 'foto' => 'image/foto_team/elaina.jpg'],
+                ['name' => 'Farras Hariz Ibrahim', 'nim' => '255150707111010', 'task' => 'CRUD Interface', 'foto' => 'image/foto_team/ayes.jpeg'],
             ],
         ],
         [
@@ -31,7 +31,7 @@
             'description' => 'Logika aplikasi, autentikasi, dan pengelolaan data',
             'code' => 'BE',
             'members' => [
-                ['name' => 'Muhammad Qalbi Al Arsyad', 'nim' => '255150707111005', 'task' => 'CRUD System'],
+                ['name' => 'Muhammad Qalbi Al Arsyad', 'nim' => '255150707111005', 'task' => 'CRUD System', 'foto' => 'image/foto_team/qalbi.jpeg'],
                 ['name' => 'Muhammad Fiqo Kholasul Fuad', 'nim' => '255150701111028', 'task' => 'Login & Logout', 'foto' => 'image/foto_team/tes_aja.jpeg'],
             ],
         ],
