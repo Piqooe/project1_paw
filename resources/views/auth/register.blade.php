@@ -7,6 +7,21 @@
 @endpush
 
 @section('content')
+
+<div class="login-side d-none d-lg-block">
+    <p class="login-side-blink">&#9654; NEW GAME &#9664;</p>
+    <h2 class="login-side-title">Create<br>Your Hero</h2>
+    <p class="login-side-text">
+        Every legend starts with a single save file.
+        Sign up and start building your own game vault.
+    </p>
+    <ul class="login-side-list">
+        <li>&#9733; Free to join</li>
+        <li>&#9881; Takes under a minute</li>
+        <li>&#10003; Verify email, then play</li>
+    </ul>
+</div>
+
 <div class="card arcade-card">
     <div class="card-header arcade-card-head">Game Archive</div>
 

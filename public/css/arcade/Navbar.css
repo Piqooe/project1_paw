@@ -24,11 +24,48 @@
 }
 
 .arcade-nav .nav-link {
-    padding: 0 20px;
-    font-size: 14px;
+    position: relative;
+    padding: 8px 14px;
+    font: 10px/1 var(--pixel);
+    letter-spacing: .5px;
+    text-transform: uppercase;
     color: #f1eefc;
+    transition: color .12s;
 }
 
 .arcade-nav .nav-link:hover {
-    color: #fff;
+    color: #22e4f2;
+}
+
+.arcade-nav .nav-link.active {
+    color: #ffd23f;
+}
+
+.arcade-nav .nav-link.active::after {
+    content: '';
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    bottom: 0;
+    height: 3px;
+    background: repeating-linear-gradient(90deg, #ffd23f 0 6px, transparent 6px 9px);
+}
+
+@media (max-width: 767px) {
+    .arcade-nav .nav-link {
+        padding: 14px 4px;
+    }
+
+    .arcade-nav .nav-link.active::after {
+        left: 4px;
+        right: auto;
+        width: 40px;
+        bottom: 6px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .arcade-nav .nav-link {
+        transition: none;
+    }
 }

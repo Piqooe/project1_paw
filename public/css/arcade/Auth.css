@@ -98,3 +98,55 @@
     color: var(--green);
     text-decoration: underline;
 }
+
+.login-side {
+    max-width: 460px;
+    margin-right: auto;
+    margin-left: 220px;
+    color: #f1eefc;
+    text-shadow: 3px 3px 0 rgba(15, 13, 32, .9);
+}
+
+.login-side-blink {
+    margin: 0 0 18px;
+    font: 11px/1 var(--pixel);
+    color: #ffd23f;
+    animation: login-blink 1s steps(2, start) infinite;
+}
+
+.login-side-title {
+    margin: 0 0 20px;
+    font: 30px/1.4 var(--pixel);
+    color: #fff;
+}
+
+.login-side-text {
+    margin: 0 0 22px;
+    padding: 14px 16px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #e4def8;
+    background: rgba(15, 13, 32, .82);
+    border: 2px solid #22e4f2;
+    box-shadow: 4px 4px 0 #0e7a84;
+    text-shadow: none;
+}
+
+.login-side-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font: 10px/2.2 var(--pixel);
+    text-transform: uppercase;
+    color: #22e4f2;
+}
+
+@keyframes login-blink {
+    to { visibility: hidden; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .login-side-blink {
+        animation: none;
+    }
+}

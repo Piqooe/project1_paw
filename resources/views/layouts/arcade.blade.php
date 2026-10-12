@@ -12,10 +12,12 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
+    {{-- CSS umum (dipakai semua halaman) --}}
     @foreach (['base', 'navbar', 'buttons'] as $css)
         <link rel="stylesheet" href="{{ asset("css/arcade/{$css}.css") }}?v={{ filemtime(public_path("css/arcade/{$css}.css")) }}">
     @endforeach
 
+    {{-- CSS khusus halaman --}}
     @stack('styles')
 </head>
 <body class="arcade">
@@ -37,11 +39,11 @@
 
             <div class="collapse navbar-collapse" id="mainNav">
                 <ul class="navbar-nav ms-auto align-items-md-center">
-                    <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('about') }}">About</a></li>
+                    <li class="nav-item"><a class="nav-link {{ request()->routeIs('home') || request()->is('/') ? 'active' : '' }}" href="{{ url('/') }}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}" href="{{ route('about') }}">About</a></li>
                     @auth
-                        <li class="nav-item ms-md-1">
-                            <a class="btn btn-nav" href="{{ url('/dashboard') }}">Dashboard</a>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}" href="{{ url('/dashboard') }}">Dashboard</a>
                         </li>
                         <li class="nav-item">
                             <form method="POST" action="{{ route('logout') }}" class="m-0">
@@ -50,8 +52,8 @@
                             </form>
                         </li>
                     @else
-                        <li class="nav-item ms-md-1">
-                            <a class="btn btn-nav" href="{{ route('login') }}">Login</a>
+                        <li class="nav-item">
+                               <a class="nav-link {{ request()->routeIs('login') ? 'active' : '' }}" href="{{ route('login') }}">Login</a>
                         </li>
                     @endauth
                 </ul>

@@ -7,6 +7,21 @@
 @endpush
 
 @section('content')
+
+<div class="login-side d-none d-lg-block">
+    <p class="login-side-blink">&#9654; TATAKAE!!! &#9664;</p>
+    <h2 class="login-side-title">Yooo,<br>Adventurer</h2>
+     <p class="login-side-text">
+        Every game you own has a story. Pick up where you left off
+        and keep your legendary collection safe.
+    </p>
+    <ul class="login-side-list">
+        <li>&#9733; High score: your collection</li>
+        <li>&#9881; Save slot: unlimited</li>
+        <li>&#10003; Cheats: none needed</li>
+    </ul>
+</div>
+
 <div class="card arcade-card">
     <div class="card-header arcade-card-head">Game Archive</div>
 
