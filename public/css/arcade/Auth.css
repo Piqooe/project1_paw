@@ -141,6 +141,41 @@
     color: #22e4f2;
 }
 
+.arcade-remember {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 4px 0 20px;
+}
+
+.arcade-remember .form-check-input {
+    flex: 0 0 auto;
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    cursor: pointer;
+    background-color: #1a1738;
+    border: 2px solid #7e52da;
+    border-radius: 0;
+}
+
+.arcade-remember .form-check-input:checked {
+    background-color: #7e52da;
+    border-color: #7e52da;
+}
+
+.arcade-remember .form-check-input:focus {
+    box-shadow: 0 0 0 3px rgba(126, 82, 218, .35);
+}
+
+.arcade-remember-label {
+    font: 8px/1.4 var(--pixel);
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    color: #e4def8;
+    cursor: pointer;
+}
+
 @keyframes login-blink {
     to { visibility: hidden; }
 }
