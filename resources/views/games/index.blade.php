@@ -14,12 +14,14 @@
         .ga-tools .grow-1{flex:1 1 180px}
 
         /* Kolom isian */
-        .ga-input{height:42px;padding:0 14px;font-size:13px;color:#f1eefc;background-color:#1a1738;border:2px solid var(--line);border-radius:0}
+        .ga-input{height:42px;padding:0 14px;font-family:var(--pixel);font-size:10px;color:#f1eefc;background-color:#1a1738;border:2px solid var(--line);border-radius:0}
         .ga-input::placeholder{color:#9a95bd}
         .ga-input:focus{color:#fff;background-color:#1a1738;border-color:#22e4f2;box-shadow:4px 4px 0 #0f0d20}
         .ga-input.is-invalid{border-color:#ff7a95;background-image:none;box-shadow:none}
         .ga-input[type=file]{height:auto;padding:9px 12px}
         .ga-input[type=date]{color-scheme:dark}
+        .ga-input option{font-family:var(--pixel);color:#f1eefc;background:#1a1738}
+        .ga-input[type=file]::file-selector-button{margin-right:12px;padding:8px 12px;font-family:var(--pixel);font-size:9px;text-transform:uppercase;color:#fff;background:#2a2158;border:2px solid var(--purple-hi);border-radius:0;cursor:pointer}
         .ga-label{display:block;margin:0 0 8px;font:8px/1.4 var(--pixel);text-transform:uppercase;letter-spacing:1px;color:var(--muted)}
         .ga-fb{display:none;margin-top:6px;font:8px/1.6 var(--pixel);color:#ff7a95}
         .ga-input.is-invalid ~ .ga-fb{display:block}
