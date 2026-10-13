@@ -4,6 +4,9 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\PlatformController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\WishlistController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', fn() => view('welcome'))->name('home');
@@ -21,6 +24,20 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
     Route::apiResource('games', GameController::class);
     Route::view('/koleksi', 'games.index')->name('games.page');
+
+    Route::apiResource('platforms', PlatformController::class);
+    Route::view('/platform', 'platforms.index')->name('platforms.page');
+
+    Route::get('/wishlists/available-games', [WishlistController::class, 'availableGames'])
+        ->name('wishlists.available');
+    Route::apiResource('wishlists', WishlistController::class);
+    Route::view('/wishlist', 'wishlists.index')->name('wishlists.page');
+
+    Route::get('/reviews/available-games', [ReviewController::class, 'availableGames'])
+        ->name('reviews.available');
+    Route::apiResource('reviews', ReviewController::class);
+    Route::view('/ulasan', 'reviews.index')->name('reviews.page');
 });

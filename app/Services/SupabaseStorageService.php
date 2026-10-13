@@ -19,22 +19,11 @@ class SupabaseStorageService
         $this->bucket = $bucket ?? config('supabase.bucket', 'games');
     }
 
-    /**
-     * Check if Supabase credentials are configured.
-     */
     public function isConfigured(): bool
     {
         return !empty($this->url) && !empty($this->key);
     }
 
-    /**
-     * Upload an uploaded file to Supabase Storage.
-     *
-     * @param UploadedFile $file
-     * @param string|null $path Custom path within bucket
-     * @return string Public URL of the uploaded image
-     * @throws \RuntimeException
-     */
     public function upload(UploadedFile $file, ?string $path = null): string
     {
         if (!$this->isConfigured()) {
@@ -52,11 +41,11 @@ class SupabaseStorageService
 
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . $this->key,
-            'apikey'        => $this->key,
-            'Content-Type'  => $mimeType,
-            'x-upsert'      => 'true',
+            'apikey' => $this->key,
+            'Content-Type' => $mimeType,
+            'x-upsert' => 'true',
         ])->withBody($fileContents, $mimeType)
-          ->post($endpoint);
+            ->post($endpoint);
 
         if (!$response->successful()) {
             $errorMessage = $response->json('message') ?? $response->json('error') ?? $response->body();
@@ -66,20 +55,11 @@ class SupabaseStorageService
         return $this->getPublicUrl($path);
     }
 
-    /**
-     * Get the public URL of a file in the Supabase bucket.
-     */
     public function getPublicUrl(string $path): string
     {
         return rtrim($this->url, '/') . '/storage/v1/object/public/' . $this->bucket . '/' . ltrim($path, '/');
     }
 
-    /**
-     * Delete an image from Supabase Storage.
-     *
-     * @param string|null $urlOrPath
-     * @return bool
-     */
     public function delete(?string $urlOrPath): bool
     {
         if (empty($urlOrPath) || !$this->isConfigured()) {
@@ -96,10 +76,10 @@ class SupabaseStorageService
         try {
             $response = Http::withHeaders([
                 'Authorization' => 'Bearer ' . $this->key,
-                'apikey'        => $this->key,
+                'apikey' => $this->key,
             ])->delete($endpoint, [
-                'prefixes' => [$path],
-            ]);
+                        'prefixes' => [$path],
+                    ]);
 
             return $response->successful();
         } catch (\Throwable $e) {
@@ -108,9 +88,6 @@ class SupabaseStorageService
         }
     }
 
-    /**
-     * Extract the relative file path inside the bucket from a given URL or path.
-     */
     public function extractPath(string $urlOrPath): string
     {
         $publicPrefix = "/storage/v1/object/public/{$this->bucket}/";
