@@ -37,7 +37,7 @@
         ],
     ];
 
-    $tech = ['Laravel', 'Blade', 'Bootstrap 5', 'GitHub'];
+    $tech = ['Laravel', 'Supabase', 'Bootstrap 5', 'GitHub'];
 @endphp
 
 @section('content')
