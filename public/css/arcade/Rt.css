@@ -411,14 +411,3 @@
         opacity: 0;
     }
 }
-
-@media (prefers-reduced-motion: reduce) {
-    .rt-blink {
-        animation: none;
-    }
-
-    .rt-card,
-    .rt-btn {
-        transition: none;
-    }
-}
